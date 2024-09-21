@@ -1,0 +1,6 @@
+services:
+  app-bank:
+    build:
+      context: .
+      dockerfile: dockerfile
+    
