@@ -29,11 +29,13 @@ class Client:
 
     def deposit(self, amount):
         self.balance += amount
-        print(f"Deposit successful!\nYour current balance is: ${self.balance}")
+        return self.balance
+        #print(f"Deposit successful!\nYour current balance is: ${self.balance}")
 
     def withdraw(self, amount):
         self.balance -= amount
-        print(f"Withdraw successful!\nYour current balance is: ${self.balance}")
+        return self.balance
+        #print(f"Withdraw successful!\nYour current balance is: ${self.balance}")
 
 
 def main():
@@ -129,6 +131,7 @@ def user_deposit(client):
             pass
         else:
             update_database(client.bank_account, client.balance)
+            print(f"Deposit successful!\nYour current balance is: ${client.balance}")
             print("Do you want to do something more?")
             if yes_no_validation():
                 return True
@@ -148,6 +151,7 @@ def user_withdraw(client):
             pass
         else:
             update_database(client.bank_account, client.balance)
+            print(f"Withdraw successful!\nYour current balance is: ${client.balance}")
             print("Do you want to do something more?")
             if yes_no_validation():
                 return True
