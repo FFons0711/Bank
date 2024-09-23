@@ -37,6 +37,9 @@ class Client:
 
 
 def main():
+    """
+    This is the main function
+    """
     print("Welcome to the 'CS50 Bank', please type your bank acount")
     while True:
         try:
@@ -64,6 +67,13 @@ def main():
 
 
 def menu(client):
+    """
+    This function deploy the menu of the application in an infinite loop 
+    to interact whir user
+    :param client: costumer
+    :type client: object
+    :return: None
+    """
     while True:
         print(
             """
@@ -120,6 +130,14 @@ def menu(client):
 
 
 def user_deposit(client):
+    """
+    This function is used to deposit money to the account and
+    then update the database
+    :param client: costumer
+    :type client: object
+    :return: value of yes_no_validation function
+    :rtype: bool
+    """
     while True:
         try:
             amount = float(input("Amount: "))
@@ -137,6 +155,14 @@ def user_deposit(client):
 
 
 def user_withdraw(client):
+    """
+    This function is used to withdraw money of the account and
+    then update the database
+    :param client: costumer
+    :type client: object
+    :return: value of yes_no_validation function
+    :rtype: bool
+    """
     while True:
         try:
             amount = float(input("Amount: "))
@@ -157,8 +183,13 @@ def user_withdraw(client):
 
 
 def yes_no_validation():
+    """
+    This function validate if the user's input is Y or N
+    :return: True or False
+    :rtype: bool
+    """
     while True:
-        print("Please write Y|N for Yes/No?")
+        print("Please type Y|N for Yes/No?")
         try:
             answer = input().upper()
             ["Y", "N"].index(answer)
@@ -178,6 +209,13 @@ def validate_card(s: str) -> bool:
 
 
 def get_client(n):
+    """
+    This function get a client for the database
+    :param n: customer bank account
+    :type n: str
+    :return: costumer 
+    :rtype: object
+    """
     counter = 0
 
     with open("database.csv", "r") as csvfile:
@@ -230,10 +268,9 @@ def update_database(n, balance):
 
 def generate_number():
     """
-    This function generate a new bank account number, checking that isn't exists in the actual database
+    This function generate a new customer bank account, checking that isn't exists in the actual database
     :return bank account's number
     :rtype: str
-    :return: None
     """
     while True:
         counter = 0
@@ -293,7 +330,16 @@ def compound_interest(amount, r, n, t):
 
 def get_graphic(client, x, y1, y2):
     """
-    This function save a img
+    This function save a img with the behavior of the compund interest
+    vs regular saving for the client
+    :param client: client that request the services    
+    :type client: object
+    :param x: time of investment (abscis axis)
+    :type x: list
+    :param y1: ordinate axis for compound interest
+    :type y1: list
+    :param y2: ordinate axis for normal investment
+    :type y2: list     
     """
     fig, ax = plt.subplots(layout='constrained')
     ax.set_title('Investment growth with compound interest')
@@ -306,6 +352,13 @@ def get_graphic(client, x, y1, y2):
     fig.savefig(f"imgs/{client.name}'s_graphic.jpg", format='jpg')
 
 def investment(client):
+    """
+    This function deploy de investment option of the menu
+    :param client: client that request the services
+    :type client: object
+    :return: value of yes_no_validation function
+    :rtype: bool
+    """
     if client.credit_score < 660:
         percentage = 10
     elif 660 < client.credit_score < 730:
@@ -331,6 +384,7 @@ def investment(client):
             if yes_no_validation():
                 return True
             return False
+
 
 if __name__ == "__main__":
     main()
