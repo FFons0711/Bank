@@ -69,7 +69,7 @@ def main():
 def menu(client):
     """
     This function deploy the menu of the application in an infinite loop 
-    to interact whir user
+    to interact with the user
     :param client: costumer
     :type client: object
     :return: None
@@ -79,9 +79,10 @@ def menu(client):
             """
                 [1] - Add balance
                 [2] - Whitdraw balance
-                [3] - Investment
-                [4] - Get ticket
-                [5] - Exit
+                [3] - Transfer balance
+                [4] - Investment
+                [5] - Get ticket
+                [6] - Exit
 
             Choose the option of your preference
             """
@@ -89,7 +90,7 @@ def menu(client):
 
         try:
             choice = input()
-            ["1", "2", "3", "4", "5"].index(choice)
+            ["1", "2", "3", "4", "5", "6"].index(choice)
 
         except:
             print("You have to choose a valid option")
@@ -109,12 +110,18 @@ def menu(client):
                     break
 
             elif choice == "3":
-                if investment(client):
+                if transfer(client):
                     pass
                 else:
                     break
 
             elif choice == "4":
+                if investment(client):
+                    pass
+                else:
+                    break
+
+            elif choice == "5":
                 try:
                     turn = tickets.decorator()
                 except StopIteration:
@@ -180,6 +187,49 @@ def user_withdraw(client):
             if yes_no_validation():
                 return True
             return False
+
+
+
+def transfer(client):
+    """
+    This function make a transfer between users
+    :param client: costumer
+    :type client: object
+    :return: value of yes_no_validation function
+    :rtype: bool
+    """
+    while True:
+        try:
+            receiver_account = input("Please enter the account you are transferring to:  ")
+            if validate_card(receiver_account):
+                receiver = get_client(receiver_account)
+            else:
+                raise ValueError
+        except ValueError:
+            print("The account must have 16 characters, only numbers")
+        except NameError:
+            print("This account doesn't exits")
+        else:
+            while True:
+                try:
+                    amount = float(input("Amount: "))
+                    client.withdraw(amount)
+                    receiver.deposit(amount)
+                except ValueError:
+                    print("Please write a valid amount")
+                    pass
+                except NameError:
+                    print("Insufficient balance")
+                    pass
+                else:
+                    update_database(client.bank_account, client.balance)
+                    update_database(receiver.bank_account, receiver.balance)
+                    print(f"Transfer successful!\nYour current balance is: ${client.balance}")
+                    print("Do you want to do something more?")
+                    if yes_no_validation():
+                        return True
+                    return False
+            
 
 
 def yes_no_validation():
