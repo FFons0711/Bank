@@ -68,7 +68,7 @@ def main():
 
 def menu(client):
     """
-    This function deploy the menu of the application in an infinite loop 
+    This function deploy the menu of the application in an infinite loop
     to interact with the user
     :param client: costumer
     :type client: object
@@ -189,7 +189,6 @@ def user_withdraw(client):
             return False
 
 
-
 def transfer(client):
     """
     This function make a transfer between users
@@ -200,7 +199,9 @@ def transfer(client):
     """
     while True:
         try:
-            receiver_account = input("Please enter the account you are transferring to:  ")
+            receiver_account = input(
+                "Please enter the account you are transferring to:  "
+            )
             if validate_card(receiver_account):
                 receiver = get_client(receiver_account)
             else:
@@ -224,12 +225,13 @@ def transfer(client):
                 else:
                     update_database(client.bank_account, client.balance)
                     update_database(receiver.bank_account, receiver.balance)
-                    print(f"Transfer successful!\nYour current balance is: ${client.balance}")
+                    print(
+                        f"Transfer successful!\nYour current balance is: ${client.balance}"
+                    )
                     print("Do you want to do something more?")
                     if yes_no_validation():
                         return True
                     return False
-            
 
 
 def yes_no_validation():
@@ -263,7 +265,7 @@ def get_client(n):
     This function get a client for the database
     :param n: customer bank account
     :type n: str
-    :return: costumer 
+    :return: costumer
     :rtype: object
     """
     counter = 0
@@ -279,7 +281,7 @@ def get_client(n):
                     row["last_name"],
                     row["bank_account"],
                     float(row["balance"]),
-                    int(row["credit_score"])
+                    int(row["credit_score"]),
                 )
 
         if counter == 0:
@@ -382,24 +384,25 @@ def get_graphic(client, x, y1, y2):
     """
     This function save a img with the behavior of the compund interest
     vs regular saving for the client
-    :param client: client that request the services    
+    :param client: client that request the services
     :type client: object
     :param x: time of investment (abscis axis)
     :type x: list
     :param y1: ordinate axis for compound interest
     :type y1: list
     :param y2: ordinate axis for normal investment
-    :type y2: list     
+    :type y2: list
     """
-    fig, ax = plt.subplots(layout='constrained')
-    ax.set_title('Investment growth with compound interest')
-    ax.set_xlabel('Time (years)')
-    ax.set_ylabel('Amount ($)')
+    fig, ax = plt.subplots(layout="constrained")
+    ax.set_title("Investment growth with compound interest")
+    ax.set_xlabel("Time (years)")
+    ax.set_ylabel("Amount ($)")
     ax.plot(x, y1, label="Compound interest")
     ax.plot(x, y2, label="Normal invest")
     ax.grid(True)
     ax.legend()
-    fig.savefig(f"imgs/{client.name}'s_graphic.jpg", format='jpg')
+    fig.savefig(f"imgs/{client.name}'s_graphic.jpg", format="jpg")
+
 
 def investment(client):
     """
@@ -416,18 +419,28 @@ def investment(client):
     else:
         percentage = 22
 
-    print(f"After an exhaustive search of your credit score we have determined that the percentage of return for your investment is {percentage}% ")
+    print(
+        f"After an exhaustive search of your credit score we have determined that the percentage of return for your investment is {percentage}% "
+    )
 
     while True:
         try:
             amount = float(input("Please type your initial amount: "))
-            n = int(input("Please type the number of times interest is capitalized per year: "))
-            years = int(input("Please type the number of years that you will keep your investment: "))
+            n = int(
+                input(
+                    "Please type the number of times interest is capitalized per year: "
+                )
+            )
+            years = int(
+                input(
+                    "Please type the number of years that you will keep your investment: "
+                )
+            )
         except:
             print("Please type a correct answer")
             pass
         else:
-            final_amount, y1, y2 = compound_interest(amount, percentage/100, n, years)
+            final_amount, y1, y2 = compound_interest(amount, percentage / 100, n, years)
             print(f"This is your final amount: ${final_amount}")
             get_graphic(client, range(1, years + 1), y1, y2)
             print("Do you want to do something more?")
