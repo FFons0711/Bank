@@ -11,3 +11,8 @@ class ClientTests(unittest.TestCase):
 
     def test_withdraw(self):
         self.assertEqual(self.account.withdraw(200), 60097.78, "Incorrect balance")
+        
+    def test_withdraw_insuficient_valance(self):    
+        with self.assertRaises(NameError):
+            self.account.withdraw(80000)
+
