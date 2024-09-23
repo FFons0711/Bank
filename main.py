@@ -30,16 +30,14 @@ class Client:
     def deposit(self, amount):
         self.balance += amount
         return self.balance
-        #print(f"Deposit successful!\nYour current balance is: ${self.balance}")
 
     def withdraw(self, amount):
         self.balance -= amount
         return self.balance
-        #print(f"Withdraw successful!\nYour current balance is: ${self.balance}")
 
 
 def main():
-    print("Welcome to the 'CS50 Bank', please write your bank acount")
+    print("Welcome to the 'CS50 Bank', please type your bank acount")
     while True:
         try:
             number = input("Bank acount: ")
@@ -201,6 +199,14 @@ def get_client(n):
 
 
 def update_database(n, balance):
+    """
+    This function update the database when any transaction is made
+    :param n: This is the client's bank account that it'll be modificated
+    :type n: str
+    :param balance: This is the balance to update
+    :type balance: float
+    :return: None
+    """
     list_updated = []
 
     with open("database.csv", "r") as csvfile:
@@ -224,7 +230,10 @@ def update_database(n, balance):
 
 def generate_number():
     """
-    This function generate a new bank account number, checking that not exist in the actual database
+    This function generate a new bank account number, checking that isn't exists in the actual database
+    :return bank account's number
+    :rtype: str
+    :return: None
     """
     while True:
         counter = 0
@@ -243,6 +252,7 @@ def generate_number():
 def add_user():
     """
     This function add a user to the local database
+    :return: None
     """
     print("We need some data for you")
     name = input("Name: ")
@@ -269,7 +279,7 @@ def compound_interest(amount, r, n, t):
     :type n: int
     :param t: number of years
     :type n: int
-    :return final amount after investment, list of ordinate axis for compound interest,
+    :return: final amount after investment, list of ordinate axis for compound interest,
      list of ordinate axis for normal investment
     :rtype: float, list, list
     """
@@ -282,6 +292,9 @@ def compound_interest(amount, r, n, t):
 
 
 def get_graphic(client, x, y1, y2):
+    """
+    This function save a img
+    """
     fig, ax = plt.subplots(layout='constrained')
     ax.set_title('Investment growth with compound interest')
     ax.set_xlabel('Time (years)')
@@ -290,7 +303,7 @@ def get_graphic(client, x, y1, y2):
     ax.plot(x, y2, label="Normal invest")
     ax.grid(True)
     ax.legend()
-    fig.savefig(f"{client.name}'s_graphic.jpg", format='jpg')
+    fig.savefig(f"imgs/{client.name}'s_graphic.jpg", format='jpg')
 
 def investment(client):
     if client.credit_score < 660:
