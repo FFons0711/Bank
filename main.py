@@ -128,10 +128,15 @@ def menu(client):
                     print(
                         "We have given all the tickets for today, please come back tomorrow"
                     )
-                    break
+                    pass
                 else:
-                    print(turn)
-                    break
+                    print(f"You have {turn}")
+                    print("Please wait, you will be attended soon")
+                    print("Do you want to do something more?")
+                    if yes_no_validation():
+                        pass
+                    else:
+                        break
             else:
                 break
 

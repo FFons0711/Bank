@@ -1,5 +1,7 @@
 import unittest
+import pytest
 from main import Client, validate_card, generate_number, compound_interest
+from tickets import give_ticket
 
 
 class ClientTests(unittest.TestCase):
@@ -36,3 +38,11 @@ def test_compound_interest():
     assert n == 2685.06
     assert y1 == [1103.81, 1218.4, 1344.89, 1484.51, 1638.62, 1808.73, 1996.5, 2203.76, 2432.54, 2685.06]
     assert y2 == [1000.0, 1100.0, 1200.0, 1300.0, 1400.0, 1500.0, 1600.0, 1700.0, 1800.0, 1900.0]
+
+
+def test_give_ticket():
+    n = give_ticket()
+    for i in range(1, 20):
+        assert next(n) == i
+    with pytest.raises(StopIteration):
+        next(n)
