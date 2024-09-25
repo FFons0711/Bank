@@ -1,5 +1,5 @@
 def give_ticket():
-    for n in range(1, 3):
+    for n in range(1, 20):
         yield n
 
 ticket = give_ticket()

@@ -2,8 +2,8 @@ import re
 import sys
 import csv
 import random
-import tickets
 import matplotlib.pyplot as plt
+from tickets import tickets
 
 
 class Client:
