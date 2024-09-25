@@ -1,6 +1,6 @@
 import unittest
 import main
-from test_class import ClientTests
+from test_bank import ClientTests
 
 
 def bank_suite():
