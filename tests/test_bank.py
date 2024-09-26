@@ -1,7 +1,7 @@
 import unittest
 import pytest
 from main import Client, validate_card, generate_number, compound_interest
-from tickets import give_ticket
+from tickets.tickets import give_ticket
 
 
 class ClientTests(unittest.TestCase):
