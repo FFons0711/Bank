@@ -304,7 +304,7 @@ def update_database(n, balance):
     """
     list_updated = []
 
-    with open("../data/database.csv", "r") as csvfile:
+    with open("data/database.csv", "r") as csvfile:
         reader = csv.DictReader(csvfile)
 
         for row in reader:
@@ -314,7 +314,7 @@ def update_database(n, balance):
         if list_updated[i]["bank_account"] == n:
             list_updated[i]["balance"] = balance
 
-    with open("../data/database.csv", "w") as csvfile:
+    with open("data/database.csv", "w") as csvfile:
         fieldnames = ["name", "last_name", "bank_account", "balance", "credit_score"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
@@ -333,7 +333,7 @@ def generate_number():
         counter = 0
         new_number = "12497602" + str(random.randint(10**7, ((10**8) - 1)))
 
-        with open("../data/database.csv", "r") as csvfile:
+        with open("data/database.csv", "r") as csvfile:
             reader = csv.DictReader(csvfile)
 
             for row in reader:
@@ -353,7 +353,7 @@ def add_user():
     last_name = input("Last name: ")
     bank_account = generate_number()
     l = [name, last_name, bank_account, 0, 560]
-    with open("../data/database.csv", "a") as csvfile:
+    with open("data/database.csv", "a") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(l)
     print("Your account is ready, you can sign up now")
