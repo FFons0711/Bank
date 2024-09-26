@@ -29,7 +29,7 @@ def test_validate_card():
 
 
 def test_generate_number():
-    number = generate_number("../data/database.csv")
+    number = generate_number("database.csv")
     assert len(number) == 16
 
 
