@@ -260,7 +260,7 @@ def yes_no_validation():
 
 
 def validate_card(s: str) -> bool:
-    if re.match(r"^\d{16}$", s):
+    if re.match(r"^12497602\d{8}$", s):
         return True
     return False
 
