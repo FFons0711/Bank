@@ -248,13 +248,13 @@ def yes_no_validation():
     while True:
         print("Please type Y|N for Yes/No?")
         try:
-            answer = input().upper()
-            ["Y", "N"].index(answer)
+            answer = input().lower()
+            ["y", "n", "yes", "no"].index(answer)
         except:
             print("Write a valid option")
             pass
         else:
-            if answer == "Y":
+            if answer == "y" or answer == "yes":
                 return True
             return False
 
@@ -310,7 +310,7 @@ def update_database(n, balance):
         for row in reader:
             list_updated.append(row)
 
-    for i in range(1, len(list_updated)):
+    for i in range(len(list_updated)):
         if list_updated[i]["bank_account"] == n:
             list_updated[i]["balance"] = balance
 
