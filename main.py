@@ -275,7 +275,7 @@ def get_client(n):
     """
     counter = 0
 
-    with open("../data/database.csv", "r") as csvfile:
+    with open("data/database.csv", "r") as csvfile:
         reader = csv.DictReader(csvfile)
 
         for row in reader:
