@@ -27,7 +27,6 @@ Python 💚...
 
 ## Running Tests
 ```bash
-  cd tests
   pytest 
 ```
 
